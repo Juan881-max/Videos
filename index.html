@@ -8,185 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 
-    <style>
-        /* --- RESET Y ESTILOS BASE --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: #ffffff;
-            color: #333;
-            display: flex; 
-        }
-
-        a { text-decoration: none; color: inherit; }
-        img { display: block; width: 100%; height: auto; }
-
-        /* --- BARRA LATERAL (MENU) --- */
-        .sidebar {
-            width: 260px;
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            padding: 60px 40px;
-            display: flex;
-            flex-direction: column;
-            background: #fff;
-            z-index: 100;
-        }
-
-        /* Logo */
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            font-style: italic;
-            margin-bottom: 15px;
-            color: #000;
-        }
-
-        /* Subtítulo */
-        .subtitle {
-            font-family: 'Lato', sans-serif;
-            font-weight: 300;
-            font-size: 0.9rem;
-            color: #999;
-            margin-bottom: 50px;
-            line-height: 1.4;
-            letter-spacing: 0.5px;
-        }
-
-        /* Enlaces Navegación */
-        .nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            font-family: 'Lato', sans-serif;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 400;
-            color: #333;
-            transition: color 0.3s ease;
-        }
-
-        /* Enlace Activo (Home) */
-        .nav-links a.active {
-            font-weight: 700;
-            color: #000;
-        }
-
-        .nav-links a:hover {
-            color: #000;
-        }
-
-        /* --- CONTENIDO PRINCIPAL --- */
-        .main-content {
-            margin-left: 260px;
-            width: calc(100% - 260px);
-            padding: 60px 80px;
-        }
-
-        /* --- IMAGEN HERO (GRANDE) --- */
-        .hero-image {
-            width: 100%;
-            margin-bottom: 40px; /* Espacio antes de la cuadrícula pequeña */
-        }
-
-        .hero-image img {
-            width: 100%;
-            /* Ajusta esto si quieres que sea más alta o más baja */
-            max-height: 80vh; 
-            object-fit: cover;
-            object-position: top; /* Para que se vea bien la cara */
-        }
-
-        /* --- GRID DE FOTOS (PEQUEÑAS) --- */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 100px;
-        }
-
-        .photo-item {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .photo-item img {
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .photo-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* --- FOOTER LINKS (Sección Inferior con Hover Arena) --- */
-        .bottom-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 50px;
-            padding-top: 50px;
-            border-top: 1px solid #eaeaea;
-            text-align: center;
-            align-items: flex-start;
-        }
-
-        .bottom-link {
-            flex: 1;
-            padding: 20px;
-            display: block;
-            cursor: pointer;
-        }
-
-        /* Transición suave */
-        .bottom-link h2, 
-        .bottom-link span {
-            transition: color 0.5s ease, opacity 0.5s ease; 
-        }
-
-        .bottom-link h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            line-height: 1.1;
-            margin-bottom: 15px;
-            color: #000;
-        }
-
-        .bottom-link span {
-            font-family: 'Lato', sans-serif;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            color: #999;
-        }
-
-        /* HOVER COLOR ARENA (#be9c79) */
-        .bottom-link:hover h2 {
-            color: #be9c79 !important; 
-        }
-
-        .bottom-link:hover span {
-            color: #be9c79 !important; 
-            opacity: 0.8;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; padding: 30px; text-align: center;}
-            .main-content { margin-left: 0; width: 100%; padding: 20px; }
-            .bottom-nav { flex-direction: column; gap: 40px; }
-            .hero-image img { max-height: 50vh; }
-        }
-    </style>
+   
 </head>
 <body>
 
@@ -208,15 +32,16 @@
     <main class="main-content">
 
         <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=85" alt="Main Hero">
+            <img src="imagenes/cero.jpg" alt="Main Hero">
         </div>
 
         <div class="photo-grid">
-            <div class="photo-item"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Foto"></div>
-            <div class="photo-item"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Foto"></div>
-            <div class="photo-item"><img src="https://images.unsplash.com/photo-1488161628813-99c974fc5bcd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Foto"></div>
-            <div class="photo-item"><img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Foto"></div>
-            <div class="photo-item"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Foto"></div>
+            <div class="photo-item"><img src="imagenes/una.jpg" alt="Foto"></div>
+            <div class="photo-item"><img src="imagenes/dos.jpg" alt="Foto"></div>
+            <div class="photo-item"><img src="imagenes/cuatro.jpg" alt="Foto"></div>
+            <div class="photo-item"><img src="imagenes/tres.jpg" alt="Foto"></div>
+            
+            <div class="photo-item"><img src="imagenes/cinco.jpg" alt="Foto"></div>
             <div class="photo-item"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Foto"></div>
         </div>
 
