@@ -23,7 +23,8 @@
 
         <div class="nav-links">
             <a href="index.html">Home</a> 
-            <a href="videos.html" class="active">Videos</a> <a href="about.html">About</a>
+            <a href="videos.html" class="active">Videos</a> 
+            <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </div>
     </nav>
@@ -31,12 +32,13 @@
     <main class="main-content">
 
         <div class="page-header">
-            
+            <h1></h1>
         </div>
 
         <div class="video-container">
             <div class="video-grid">
-                <div class="video-item" onclick="openVideo('dQw4w9WgXcQ')"> 
+                
+                <div class="video-item" onclick="openVideo('youtube', 'dQw4w9WgXcQ')"> 
                     <div class="video-thumbnail">
                         <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Video Thumb">
                         <div class="play-icon"></div>
@@ -47,29 +49,29 @@
                     </div>
                 </div>
 
-                <div class="video-item" onclick="openVideo('tgbNymZ7vqY')">
+                <div class="video-item" onclick="openVideo('local', 'videos/Santiago.mp4')">
                     <div class="video-thumbnail">
-                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Video Thumb">
+                        <img src="imagenes/santiago_thumb.jpg" alt="Santiago Video Thumbnail">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-info">
-                        <div class="video-title">Cooking Show Intro</div>
-                        <div class="video-client">Documentary</div>
+                        <div class="video-title">Santiago - Cortometraje</div>
+                        <div class="video-client">Proyecto Personal</div>
                     </div>
                 </div>
 
-                <div class="video-item" onclick="openVideo('lxI1F1j88is')">
+                <div class="video-item" onclick="openVideo('youtube', 'IVnhQrJoKLk')">
                     <div class="video-thumbnail">
-                        <img src="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Video Thumb">
+                        <img src="imagenes/hacking_thumb.jpg" alt="Video Thumb">
                         <div class="play-icon"></div>
                     </div>
                     <div class="video-info">
-                        <div class="video-title">Fashion Week 2025</div>
-                        <div class="video-client">Event</div>
+                        <div class="video-title">Curso de Hacking Etico</div>
+                        <div class="video-client">Music Video</div>
                     </div>
                 </div>
                  
-                <div class="video-item" onclick="openVideo('ScMzIvxBSi4')">
+                <div class="video-item" onclick="openVideo('youtube', 'ScMzIvxBSi4')">
                     <div class="video-thumbnail">
                         <img src="https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Video Thumb">
                         <div class="play-icon"></div>
@@ -91,7 +93,14 @@
     <div class="lightbox" id="video-lightbox" onclick="closeVideo()">
         <div class="lightbox-content" onclick="event.stopPropagation()">
             <span class="close-btn" onclick="closeVideo()">&times;</span>
-            <iframe id="youtube-player" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <div class="video-player-container">
+                <iframe id="youtube-player" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                
+                <video id="local-player" controls autoplay playsinline>
+                    <source src="" type="video/mp4">
+                    Tu navegador no soporta el tag de video.
+                </video>
+            </div>
         </div>
     </div>
 

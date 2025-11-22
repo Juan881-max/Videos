@@ -196,6 +196,7 @@
 
 /* PARA LA PAGINA VIDEOS */
 
+
         /* --- RESET Y ESTILOS BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -221,7 +222,7 @@
             flex-direction: column;
             background: #fff;
             z-index: 100;
-            border-right: 1px solid #f0f0f0; /* Opcional: separador sutil */
+            border-right: 1px solid #f0f0f0; 
         }
 
         .logo {
@@ -272,17 +273,16 @@
         .main-content {
             margin-left: 260px;
             width: calc(100% - 260px);
-            padding: 0; /* Sin padding global para que el header toque los bordes */
+            padding: 0; 
         }
 
-        /* --- CABECERA DE LA PÁGINA DE VIDEOS (ESTILO DEL PRIMER CÓDIGO) --- */
+        /* --- CABECERA DE LA PÁGINA DE VIDEOS --- */
         .page-header {
             width: 100%;
-            height: 350px; /* Altura del banner */
+            height: 350px; 
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Imagen de fondo para el título */
             background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
@@ -291,7 +291,6 @@
             color: white;
         }
         
-        /* Capa oscura sobre la imagen para leer el texto */
         .page-header::after {
             content: '';
             position: absolute;
@@ -309,7 +308,7 @@
 
         /* --- GRID DE VIDEOS --- */
         .video-container {
-            padding: 0 80px 80px 80px; /* Padding interno para el grid */
+            padding: 0 80px 80px 80px; 
         }
 
         .video-grid {
@@ -320,6 +319,7 @@
 
         .video-item {
             cursor: pointer;
+            position: relative; /* Necesario para la animación */
         }
 
         .video-thumbnail {
@@ -396,7 +396,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.95); /* Fondo blanco translúcido */
+            background: rgba(255, 255, 255, 0.95); 
             z-index: 2000;
             display: flex;
             align-items: center;
@@ -419,12 +419,25 @@
             position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.2);
         }
+        
+        /* Contenedor del reproductor de video (tanto iframe como <video>) */
+        .video-player-container {
+            width: 100%;
+            height: 100%;
+        }
 
-        .lightbox iframe {
+        .video-player-container iframe,
+        .video-player-container video {
             width: 100%;
             height: 100%;
             border: none;
         }
+        
+        /* Aseguramos que solo el reproductor activo sea visible */
+        #youtube-player, #local-player {
+            display: none;
+        }
+
 
         .close-btn {
             position: absolute;
@@ -449,4 +462,4 @@
             .video-container { padding: 40px 20px; }
             .video-grid { grid-template-columns: 1fr; }
         }
-          
+           
