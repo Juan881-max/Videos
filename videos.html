@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Videos</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- RESET Y ESTILOS BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            display: flex; 
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { display: block; width: 100%; height: auto; }
+
+        /* --- BARRA LATERAL (ESTILO NUEVO CORREGIDO) --- */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            z-index: 100;
+            border-right: 1px solid #f0f0f0; /* Opcional: separador sutil */
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .subtitle {
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 50px;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a.active {
+            font-weight: 700;
+            color: #000;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .main-content {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            padding: 0; /* Sin padding global para que el header toque los bordes */
+        }
+
+        /* --- CABECERA DE LA PÁGINA DE VIDEOS (ESTILO DEL PRIMER CÓDIGO) --- */
+        .page-header {
+            width: 100%;
+            height: 350px; /* Altura del banner */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Imagen de fondo para el título */
+            background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 60px;
+            position: relative;
+            color: white;
+        }
+        
+        /* Capa oscura sobre la imagen para leer el texto */
+        .page-header::after {
+            content: '';
+            position: absolute;
+            top:0; left:0; right:0; bottom:0;
+            background: rgba(0,0,0,0.4);
+        }
+
+        .page-header h1 {
+            position: relative;
+            z-index: 2;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-style: italic;
+        }
+
+        /* --- GRID DE VIDEOS --- */
+        .video-container {
+            padding: 0 80px 80px 80px; /* Padding interno para el grid */
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .video-item {
+            cursor: pointer;
+        }
+
+        .video-thumbnail {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease, filter 0.3s ease;
+            filter: brightness(0.9);
+        }
+
+        .video-thumbnail:hover img {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+
+        /* Icono de Play */
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.8);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .video-thumbnail:hover .play-icon {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: #fff;
+        }
+
+        .play-icon::after {
+            content: '▶';
+            font-size: 22px;
+            color: #333;
+            margin-left: 4px; 
+        }
+
+        .video-info {
+            margin-top: 15px;
+        }
+
+        .video-title {
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .video-client {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- LIGHTBOX (MODAL DE VIDEO) --- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95); /* Fondo blanco translúcido */
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            width: 80%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+            background: #000;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .lightbox iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            font-size: 3rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #333;
+            font-family: sans-serif;
+            transition: color 0.3s;
+        }
+        .close-btn:hover { color: #000; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; padding: 30px; text-align: center;}
+            .main-content { margin-left: 0; width: 100%; }
+            .page-header { height: 200px; }
+            .page-header h1 { font-size: 2.5rem; }
+            .video-container { padding: 40px 20px; }
+            .video-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo">jw</div>
+        
+        <div class="subtitle">
+            Photographer |<br>Cinematographer
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a> 
+            <a href="videos.html" class="active">Videos</a> <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+
+        <div class="page-header">
+            
+        </div>
+
+        <div class="video-container">
+            <div class="video-grid">
+                <div class="video-item" onclick="openVideo('dQw4w9WgXcQ')"> 
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Video Thumb">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Fancy Feast Spec Ad</div>
+                        <div class="video-client">Commercial</div>
+                    </div>
+                </div>
+
+                <div class="video-item" onclick="openVideo('tgbNymZ7vqY')">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Video Thumb">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Cooking Show Intro</div>
+                        <div class="video-client">Documentary</div>
+                    </div>
+                </div>
+
+                <div class="video-item" onclick="openVideo('lxI1F1j88is')">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Video Thumb">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Fashion Week 2025</div>
+                        <div class="video-client">Event</div>
+                    </div>
+                </div>
+                 
+                <div class="video-item" onclick="openVideo('ScMzIvxBSi4')">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Video Thumb">
+                        <div class="play-icon"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Mountain Expedition</div>
+                        <div class="video-client">Travel</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top:60px; text-align:center;">
+                <a href="index.html" style="text-decoration:underline; color:#555;">&larr; Back to Home</a>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="lightbox" id="video-lightbox" onclick="closeVideo()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeVideo()">&times;</span>
+            <iframe id="youtube-player" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openVideo(videoId) {
+            const lightbox = document.getElementById('video-lightbox');
+            const player = document.getElementById('youtube-player');
+            // Carga el video y lo reproduce automáticamente
+            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            lightbox.classList.add('active');
+        }
+
+        function closeVideo() {
+            const lightbox = document.getElementById('video-lightbox');
+            const player = document.getElementById('youtube-player');
+            lightbox.classList.remove('active');
+            // Detiene el video limpiando la URL
+            setTimeout(() => {
+                player.src = ''; 
+            }, 300);
+        }
+        
+        // Cerrar con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeVideo();
+            }
+        });
+    </script>
+
+</body>
+</html>
