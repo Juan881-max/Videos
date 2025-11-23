@@ -1,50 +1,54 @@
 
         
-        function openVideo(type, source) {
-            const lightbox = document.getElementById('video-lightbox');
-            const youtubePlayer = document.getElementById('youtube-player');
-            const localPlayer = document.getElementById('local-player');
+        /**
+ * Script para manejar el Lightbox de videos de YouTube.
+ */
 
-            // 1. Ocultar ambos reproductores para empezar limpio
-            youtubePlayer.style.display = 'none';
-            localPlayer.style.display = 'none';
-
-            if (type === 'youtube') {
-                // Configuración para YouTube
-                youtubePlayer.src = `https://www.youtube.com/embed/${source}?autoplay=1&rel=0`;
-                youtubePlayer.style.display = 'block';
-            } else if (type === 'local') {
-                // Configuración para Video Local
-                localPlayer.querySelector('source').src = source;
-                localPlayer.load(); // Vuelve a cargar el video con la nueva fuente
-                localPlayer.style.display = 'block';
-                // El atributo "autoplay" en HTML ya debería iniciar la reproducción
-            }
-
-            lightbox.classList.add('active');
-        }
-
-        function closeVideo() {
-            const lightbox = document.getElementById('video-lightbox');
-            const youtubePlayer = document.getElementById('youtube-player');
-            const localPlayer = document.getElementById('local-player');
-            
-            lightbox.classList.remove('active');
-            
-            // Detiene la reproducción y limpia la fuente
-            setTimeout(() => {
-                youtubePlayer.src = ''; 
-                localPlayer.pause(); // Pausa el video local
-                localPlayer.currentTime = 0; // Reinicia el video local
-                localPlayer.querySelector('source').src = ''; // Limpia la fuente
-                localPlayer.load(); // Fuerza la limpieza
-            }, 300);
-        }
-        
-        // Cerrar con la tecla ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                closeVideo();
-            }
-        });
+// -------------------------------------------------------------
+// FUNCIÓN PRINCIPAL: ABRIR LIGHTBOX Y CARGAR YOUTUBE
+// -------------------------------------------------------------
+function openVideo(source) {
+    // Nota: Eliminamos el parámetro 'type' ya que siempre será 'youtube'
     
+    const lightbox = document.getElementById('video-lightbox');
+    const youtubePlayer = document.getElementById('youtube-player');
+    
+    // 1. Ocultamos el reproductor y limpiamos la fuente para empezar limpio
+    youtubePlayer.style.display = 'none';
+    youtubePlayer.src = ''; 
+
+    // 2. Configuración para YouTube: Solo necesitamos el ID (source)
+    // El parámetro 'autoplay=1' asegura que el video empiece a reproducirse automáticamente.
+    youtubePlayer.src = `https://www.youtube.com/embed/${source}?autoplay=1&rel=0`;
+    youtubePlayer.style.display = 'block';
+
+    // 3. Mostrar el Lightbox
+    lightbox.classList.add('active');
+}
+
+// -------------------------------------------------------------
+// FUNCIÓN DE CIERRE: PAUSAR Y OCULTAR LIGHTBOX
+// -------------------------------------------------------------
+function closeVideo() {
+    const lightbox = document.getElementById('video-lightbox');
+    const youtubePlayer = document.getElementById('youtube-player');
+    
+    lightbox.classList.remove('active');
+    
+    // Detiene la reproducción y limpia la fuente después de la transición
+    setTimeout(() => {
+        // Limpiar src del iframe para detener la reproducción de YouTube
+        youtubePlayer.src = ''; 
+    }, 300);
+}
+
+// -------------------------------------------------------------
+// MANEJO DE EVENTOS
+// -------------------------------------------------------------
+
+// Cerrar Lightbox con la tecla ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        closeVideo();
+    }
+});

@@ -196,7 +196,6 @@
 
 /* PARA LA PAGINA VIDEOS */
 
-
         /* --- RESET Y ESTILOS BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -420,24 +419,23 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.2);
         }
         
-        /* Contenedor del reproductor de video (tanto iframe como <video>) */
+        /* Contenedor del reproductor de video (solo iframe) */
         .video-player-container {
             width: 100%;
             height: 100%;
         }
 
-        .video-player-container iframe,
-        .video-player-container video {
+        .video-player-container iframe { /* ELIMINAMOS 'video' de esta regla */
             width: 100%;
             height: 100%;
             border: none;
         }
         
-        /* Aseguramos que solo el reproductor activo sea visible */
-        #youtube-player, #local-player {
-            display: none;
-        }
-
+        /* Eliminamos la regla '#youtube-player, #local-player { display: none; }' 
+           y dejamos que el script maneje el display del iframe. 
+           Si lo quieres dejar solo para youtube player, sería:
+           #youtube-player { display: none; }
+        */
 
         .close-btn {
             position: absolute;
@@ -462,4 +460,3 @@
             .video-container { padding: 40px 20px; }
             .video-grid { grid-template-columns: 1fr; }
         }
-           

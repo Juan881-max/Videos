@@ -49,18 +49,18 @@
                     </div>
                 </div>
 
-                <div class="video-item" onclick="openVideo('local', 'videos/Santiago.mp4')">
-                    <div class="video-thumbnail">
-                        <img src="imagenes/santiago_thumb.jpg" alt="Santiago Video Thumbnail">
-                        <div class="play-icon"></div>
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Santiago - Cortometraje</div>
-                        <div class="video-client">Proyecto Personal</div>
-                    </div>
-                </div>
+              <div class="video-item" onclick="openVideo('7zVcd5geEBA')">
+    <div class="video-thumbnail">
+        <img src="imagenes/santiago_thumb.jpg" alt="Santiago Video Thumbnail">
+        <div class="play-icon"></div>
+    </div>
+    <div class="video-info">
+        <div class="video-title">Santiago - Cortometraje (Versión Final)</div>
+        <div class="video-client">YouTube / Ficción</div>
+    </div>
+</div>
 
-                <div class="video-item" onclick="openVideo('youtube', 'IVnhQrJoKLk')">
+                <div class="video-item" onclick="openVideo( 'IVnhQrJoKLk')">
                     <div class="video-thumbnail">
                         <img src="imagenes/hacking_thumb.jpg" alt="Video Thumb">
                         <div class="play-icon"></div>
@@ -91,18 +91,13 @@
     </main>
 
     <div class="lightbox" id="video-lightbox" onclick="closeVideo()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeVideo()">&times;</span>
-            <div class="video-player-container">
-                <iframe id="youtube-player" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                
-                <video id="local-player" controls autoplay playsinline>
-                    <source src="" type="video/mp4">
-                    Tu navegador no soporta el tag de video.
-                </video>
-            </div>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeVideo()">&times;</span>
+        <div class="video-player-container">
+            <iframe id="youtube-player" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
+</div>
 
     
 
