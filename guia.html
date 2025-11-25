@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Mitológica - Museo del Prado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            color: #ffd700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #e0e0e0;
+            font-style: italic;
+        }
+        
+        .alert-box {
+            background: rgba(255, 100, 100, 0.2);
+            border-left: 4px solid #ff6b6b;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .alert-box h3 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+        
+        .info-box {
+            background: rgba(100, 180, 255, 0.2);
+            border-left: 4px solid #64b5f6;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .info-box h3 {
+            color: #64b5f6;
+            margin-bottom: 10px;
+        }
+        
+        .section {
+            margin: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: #ffd700;
+            margin-bottom: 30px;
+            border-bottom: 3px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        .obras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .obra-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .obra-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+        
+        .obra-number {
+            display: inline-block;
+            background: #ffd700;
+            color: #1a1a2e;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .obra-title {
+            font-size: 1.3em;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+        
+        .obra-author {
+            font-size: 1em;
+            color: #64b5f6;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+        
+        .obra-location {
+            font-size: 0.9em;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .obra-description {
+            font-size: 0.95em;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+        
+        .legend {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+        
+        .color-autor { background: #64b5f6; }
+        .color-ubicacion { background: #ff6b6b; }
+        .color-titulo { background: #ffd700; }
+        
+        .route-section {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .route-title {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        
+        .floor {
+            margin: 20px 0;
+        }
+        
+        .floor-title {
+            color: #64b5f6;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .obras-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .legend {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏛️ GUÍA MITOLÓGICA</h1>
+            <p class="subtitle">Museo del Prado - Del Olimpo a los Dioses Clásicos</p>
+        </header>
+
+        <div class="alert-box">
+            <h3>⚠️ Nota Importante sobre Mitología Egipcia</h3>
+            <p>El Museo del Prado NO posee obras de mitología egipcia en su colección permanente. El museo se especializa en arte europeo de los siglos XII-XX, con énfasis en pintura española, flamenca e italiana. La temática egipcia está prácticamente ausente.</p>
+            <p style="margin-top: 10px;"><strong>Esta guía se centra en mitología grecorromana</strong>, que sí tiene una presencia espectacular en el Prado y conecta con el mundo clásico que conoció Cleopatra.</p>
+        </div>
+
+        <div class="info-box">
+            <h3>💡 Conexión con tu visita a Cleopatra</h3>
+            <p>Aunque Cleopatra fue egipcia, su dinastía (los Ptolomeos) era de origen griego-macedonio. Cleopatra misma se consideraba heredera tanto de la tradición egipcia como de la cultura helénica. Las obras de mitología griega del Prado te conectarán con ese mundo clásico mediterráneo que ella conoció y del que formó parte.</p>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color color-titulo"></div>
+                <span>Título de la obra</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-autor"></div>
+                <span>Autor</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-ubicacion"></div>
+                <span>Ubicación en el museo</span>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">🎨 LAS 25 OBRAS IMPRESCINDIBLES</h2>
+
+            <div class="obras-grid">
+                <div class="obra-card">
+                    <span class="obra-number">1</span>
+                    <h3 class="obra-title">Las tres Gracias</h3>
+                    <p class="obra-author">Pedro Pablo Rubens (1635)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 029</p>
+                    <p class="obra-description">Representación de las tres diosas de la belleza, la alegría y el encanto. Una obra maestra del barroco flamenco que muestra cuerpos sensuales y carnosos en una danza circular. Rubens plasma aquí su ideal de belleza femenina.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">2</span>
+                    <h3 class="obra-title">El jardín de las Hespérides</h3>
+                    <p class="obra-author">Peter Paul Rubens (1638-1640)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 029</p>
+                    <p class="obra-description">Representa el jardín mítico donde las ninfas Hespérides custodian las manzanas de oro. Aparece el dragón Ladón y se relaciona con uno de los trabajos de Hércules. Composición dinámica con gran colorido.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">3</span>
+                    <h3 class="obra-title">Saturno devorando a su hijo</h3>
+                    <p class="obra-author">Francisco de Goya (1820-1823)</p>
+                    <p class="obra-location">📍 Planta 0 - Salas 066-067 (Pinturas negras)</p>
+                    <p class="obra-description">Una de las "pinturas negras" más impactantes. Muestra al titán Cronos (Saturno) devorando a sus hijos por temor a ser destronado. Imagen brutal y expresionista que refleja el lado oscuro del mito.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">4</span>
+                    <h3 class="obra-title">Dánae recibiendo la lluvia de oro</h3>
+                    <p class="obra-author">Tiziano (1560-1565)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 044</p>
+                    <p class="obra-description">Zeus se transforma en lluvia de oro para seducir a Dánae, quien estaba encerrada por su padre. De esta unión nacerá Perseo. Tiziano representa el momento con gran sensualidad y dominio del color.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">5</span>
+                    <h3 class="obra-title">Venus y Adonis</h3>
+                    <p class="obra-author">Tiziano (1554)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 044</p>
+                    <p class="obra-description">La diosa del amor intenta retener a su amante mortal Adonis, quien va a cazar y morirá. Momento dramático donde Venus presiente la tragedia. Composición diagonal muy dinámica.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">6</span>
+                    <h3 class="obra-title">Bacanal de los andrios</h3>
+                    <p class="obra-author">Tiziano (1523-1526)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 042</p>
+                    <p class="obra-description">Fiesta en honor a Baco (Dioniso) en la isla de Andros, donde fluye vino en lugar de agua. Celebración pagana llena de figuras danzantes, música y alegría desenfrenada.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">7</span>
+                    <h3 class="obra-title">La ofrenda a Venus</h3>
+                    <p class="obra-author">Tiziano (1518-1519)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 042</p>
+                    <p class="obra-description">Niños alados (putti) ofrecen manzanas a una estatua de Venus. Escena idílica que representa el culto a la diosa del amor en un paisaje arcádico.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">8</span>
+                    <h3 class="obra-title">El rapto de Europa</h3>
+                    <p class="obra-author">Peter Paul Rubens (copia de Tiziano)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 029</p>
+                    <p class="obra-description">Zeus transformado en toro blanco rapta a Europa, princesa fenicia. La lleva sobre su lomo a través del mar hasta Creta. Escena de gran movimiento con acompañamiento de ninfas y amorcillos.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">9</span>
+                    <h3 class="obra-title">Mercurio y Argos</h3>
+                    <p class="obra-author">Diego Velázquez (1659)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 015</p>
+                    <p class="obra-description">Mercurio adormece con su música a Argos, el gigante de cien ojos que custodia a Ío (transformada en vaca por Zeus). Obra tardía de Velázquez con pincelada suelta y atmosférica.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">10</span>
+                    <h3 class="obra-title">Apolo y Marsias</h3>
+                    <p class="obra-author">José de Ribera (1637)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 008</p>
+                    <p class="obra-description">El sátiro Marsias retó a Apolo en un concurso musical y perdió. Como castigo, Apolo lo desolla vivo. Ribera muestra el momento cruel con realismo tenebrista típico del barroco español.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">11</span>
+                    <h3 class="obra-title">El Parnaso</h3>
+                    <p class="obra-author">Andrea Mantegna (1497)</p>
+                    <p class="obra-location">📍 Planta 0 - Sala 056B</p>
+                    <p class="obra-description">Monte sagrado donde Apolo preside rodeado de las nueve Musas. También aparecen Marte y Venus. Composición alegórica que celebra las artes y la poesía bajo protección divina.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">12</span>
+                    <h3 class="obra-title">El nacimiento de Venus</h3>
+                    <p class="obra-author">Attributed to Jacopo Palma el Viejo</p>
+                    <p class="obra-location">📍 Planta 1 - Pintura veneciana</p>
+                    <p class="obra-description">Venus surge del mar, nacida de la espuma. Escena que simboliza la belleza perfecta emergiendo del elemento acuático. Típica de la escuela veneciana con su dominio del color.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">13</span>
+                    <h3 class="obra-title">La fragua de Vulcano</h3>
+                    <p class="obra-author">Diego Velázquez (1630)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 015</p>
+                    <p class="obra-description">Apolo visita a Vulcano (Hefesto) en su herrería para informarle de la infidelidad de Venus con Marte. Los rostros expresan sorpresa y desconcierto. Obra de juventud de Velázquez pintada en Italia.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">14</span>
+                    <h3 class="obra-title">Venus del espejo</h3>
+                    <p class="obra-author">Diego Velázquez (1647-1651)</p>
+                    <p class="obra-location">📍 National Gallery London (no en Prado)</p>
+                    <p class="obra-description">Nota: Esta obra está en Londres, pero en el Prado hay otras Venus. Venus recostada contempla su reflejo en un espejo sostenido por Cupido. Uno de los pocos desnudos femeninos del arte español.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">15</span>
+                    <h3 class="obra-title">Perseo y Andrómeda</h3>
+                    <p class="obra-author">Peter Paul Rubens (1639-1640)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 029</p>
+                    <p class="obra-description">Perseo libera a Andrómeda, que estaba encadenada a una roca como sacrificio a un monstruo marino. Momento heroico con gran dinamismo barroco. El héroe acaba de matar a la bestia.</p>
+</div>
+
+                <div class="obra-card">
+                    <span class="obra-number">16</span>
+                    <h3 class="obra-title">Orfeo y Eurídice</h3>
+                    <p class="obra-author">Peter Paul Rubens (1636-1638)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 029</p>
+                    <p class="obra-description">El músico Orfeo intenta rescatar a su esposa Eurídice del inframundo, pero la pierde al mirar atrás. Mito sobre el amor, la muerte y la desobediencia que tiene consecuencias trágicas.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">17</span>
+                    <h3 class="obra-title">Las hilanderas (Fábula de Aracne)</h3>
+                    <p class="obra-author">Diego Velázquez (1657)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 015A</p>
+                    <p class="obra-description">En apariencia un taller textil, pero al fondo representa el mito de Aracne, quien retó a Atenea en el arte del tejido y fue convertida en araña. Obra compleja con doble nivel narrativo.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">18</span>
+                    <h3 class="obra-title">El juicio de Paris</h3>
+                    <p class="obra-author">Peter Paul Rubens (1638-1639)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 029</p>
+                    <p class="obra-description">Paris debe elegir a la diosa más bella entre Hera, Atenea y Afrodita. Elige a Venus y recibirá a Helena, desencadenando la Guerra de Troya. Momento clave de la mitología griega.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">19</span>
+                    <h3 class="obra-title">Diana y sus ninfas descubren el embarazo de Calisto</h3>
+                    <p class="obra-author">Peter Paul Rubens (1635-1640)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 029</p>
+                    <p class="obra-description">La ninfa Calisto, violada por Zeus, es descubierta embarazada por Diana. Será expulsada y transformada en osa. Escena de gran tensión emocional entre las figuras femeninas.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">20</span>
+                    <h3 class="obra-title">El festín de los dioses</h3>
+                    <p class="obra-author">Giovanni Bellini y Tiziano (1514-1529)</p>
+                    <p class="obra-location">📍 National Gallery Washington (no en Prado)</p>
+                    <p class="obra-description">Nota: No en Prado. En su lugar ver otras escenas de banquetes dionisíacos en la colección veneciana del museo.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">21</span>
+                    <h3 class="obra-title">Hércules luchando con el león de Nemea</h3>
+                    <p class="obra-author">Francisco de Zurbarán (1634)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 010</p>
+                    <p class="obra-description">Primer trabajo de Hércules: estrangular al león de Nemea cuya piel era invulnerable. Serie de trabajos de Hércules pintada para el Salón de Reinos. Muestra la fuerza del héroe.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">22</span>
+                    <h3 class="obra-title">Hércules y Cerbero</h3>
+                    <p class="obra-author">Francisco de Zurbarán (1634)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 010</p>
+                    <p class="obra-description">Último de los doce trabajos: capturar a Cerbero, el perro de tres cabezas guardián del inframundo. Hércules lo somete y lo lleva ante Euristeo. Composición dramática y oscura.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">23</span>
+                    <h3 class="obra-title">Marte</h3>
+                    <p class="obra-author">Diego Velázquez (1638)</p>
+                    <p class="obra-location">📍 Planta 1 - Sala 015</p>
+                    <p class="obra-description">El dios de la guerra representado en reposo, melancólico y desnudo, solo con casco y paño. Interpretación humanizada del dios, más cercano a un soldado cansado que a una divinidad triunfante.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">24</span>
+                    <h3 class="obra-title">La Venus del amor</h3>
+                    <p class="obra-author">Lambert Sustris (1550-1560)</p>
+                    <p class="obra-location">📍 Planta 1 - Pintura veneciana</p>
+                    <p class="obra-description">Venus recostada en paisaje, acompañada de Cupido. Representa el amor divino y la belleza idealizada. Influencia clara de la escuela veneciana con tonos cálidos.</p>
+                </div>
+
+                <div class="obra-card">
+                    <span class="obra-number">25</span>
+                    <h3 class="obra-title">El combate de Hércules con las Harpías</h3>
+                    <p class="obra-author">Escuela flamenca</p>
+                    <p class="obra-location">📍 Verificar en colecciones flamencas</p>
+                    <p class="obra-description">Hércules enfrenta a las Harpías, criaturas con cuerpo de ave y rostro de mujer que atormentaban a las personas robando su comida. Episodio relacionado con los argonautas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="route-section">
+            <h2 class="route-title">🗺️ RUTA SUGERIDA POR EL MUSEO</h2>
+            
+            <div class="floor">
+                <h3 class="floor-title">PLANTA 0</h3>
+                <p>🎨 <strong>Salas 066-067:</strong> Pinturas negras de Goya (Saturno devorando a su hijo)</p>
+                <p>🎨 <strong>Sala 056B:</strong> Andrea Mantegna (El Parnaso)</p>
+            </div>
+
+            <div class="floor">
+                <h3 class="floor-title">PLANTA 1 - RECORRIDO PRINCIPAL</h3>
+                <p>🎨 <strong>Salas 008-010:</strong> Pintura española del Siglo de Oro (Ribera, Zurbarán - Hércules, Apolo y Marsias)</p>
+                <p>🎨 <strong>Sala 015-015A:</strong> Velázquez (La fragua de Vulcano, Mercurio y Argos, Las hilanderas, Marte)</p>
+                <p>🎨 <strong>Sala 029:</strong> Rubens (★★★ IMPRESCINDIBLE - aquí están la mayoría de obras: Las tres Gracias, El rapto de Europa, Perseo y Andrómeda, El jardín de las Hespérides, El juicio de Paris, Orfeo y Eurídice, Diana y Calisto)</p>
+                <p>🎨 <strong>Salas 042-044:</strong> Tiziano (★★★ ESENCIAL - Bacanal de los andrios, La ofrenda a Venus, Dánae, Venus y Adonis)</p>
+                <p>🎨 <strong>Pintura veneciana:</strong> Otras representaciones de Venus y divinidades</p>
+            </div>
+
+            <div class="info-box" style="margin-top: 30px;">
+                <h3>💡 Consejos para tu visita</h3>
+                <p><strong>Céntrate en dos salas clave:</strong> La Sala 029 (Rubens) y las Salas 042-044 (Tiziano) concentran la mayor parte de la mitología grecorromana del museo.</p>
+                <p style="margin-top: 10px;"><strong>Tiempo estimado:</strong> 3-4 horas para ver estas 25 obras con calma y leer las explicaciones.</p>
+                <p style="margin-top: 10px;"><strong>Descarga la app del Prado</strong> para audioguías y mapas interactivos actualizados.</p>
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 50px; padding: 30px; background: rgba(255,215,0,0.1); border-radius: 15px;">
+            <p style="color: #ffd700; font-size: 1.1em;">✨ ¡Disfruta tu viaje mitológico por el Prado! ✨</p>
+            <p style="margin-top: 10px; color: #e0e0e0;">De Cleopatra en Matadero a los dioses del Olimpo en el Prado</p>
+        </footer>
+    </div>
+</body>
+</html>
